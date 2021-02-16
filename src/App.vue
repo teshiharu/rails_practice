@@ -5,6 +5,10 @@
         router-link.link(:to="{ name: 'Home' }") Home
       .header_item
         router-link.link(:to="{ name: 'Sample' }") Sample
+      .header_item
+        router-link.link(:to="{ name : 'New' }") New
+      .header_item
+        router-link.link(:to="{ name : 'Index' }") Index
     .main
       router-view
 </template>

@@ -4,6 +4,7 @@
 </template>
 
 <script>
+//他のファイルでimportされたときに戻り値
 export default {
   components: {
   },
