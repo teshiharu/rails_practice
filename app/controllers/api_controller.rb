@@ -43,8 +43,13 @@ class ApiController < ActionController::Base
     # ①Vueから値受け取る → 変数json_requestに格納
     json_request = JSON.parse(request.body.read)
 
-    name = json_request["name"] # 返ってくるjsonがどういう構造かによる
-    weight = json_request["weight"] # 返ってくるjsonがどういう構造かによる
+    # [イケてない例：自力パース] === === ===
+    # name = json_request["name"] # 返ってくるjsonがどういう構造かによる
+    # weight = json_request["weight"] # 返ってくるjsonがどういう構造かによる
+
+    # [イケてる例：params] === === ===
+    name = params[:name]
+    weight = params[:weight]
 
     # ②受け取った値を元にAnimalのインスタンス作成
     newAnimal = Animal.new() # Animalモデルをインスタンス化
@@ -54,15 +59,15 @@ class ApiController < ActionController::Base
     # ③保存
     if newAnimal.save
       obj = {
-        responce: 'success !!',
+        msg: 'success !!',
         newAnimal: {
           name: name,
           weight: weight,
         },
       }
-      render(json: obj)
+      render(json: obj, status: 200)
     else
-      render(json: { responce: 'failed ...' })
+      render(json: { msg: 'failed ...' }, status: 500)
     end
 
   end

@@ -3,7 +3,7 @@
     <h1>New</h1>
     <p>Name : <input type="text" v-model="name"></p>
     <p>Weight : <input type="number" v-model="weight"></p>
-    <button v-on:click="postNewAnimal">Submit</button>
+    <button @click="postNewAnimal">Submit</button>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   mounted() {
   },
   methods: {
-    postNewAnimal: function(){
+    postNewAnimal(){
 
       if(this.name === '' || this.weight === 0){
         alert('未入力欄あり')
@@ -40,8 +40,14 @@ export default {
       let vm = this //Vueインスタンスを変数vmに格納しておく
       const endpoint = '/api/new' //Railsのapi#createを呼ぶ
       axios.post(endpoint, {
+
+          //失敗
+          // name: this.name,
+          // weight: this.weight,
+
+          //成功
           name: vm.name,
-          weight: vm.weight
+          weight: vm.weight,
         })
         .then(function (response) { //処理うまく行ったパターン
           console.log(response);
