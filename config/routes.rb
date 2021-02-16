@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  # === === === Sample === === ===
   root 'application#index'
   get '/api/sample', controller: :api, action: :sample
+  post '/api/new', controller: :api, action: :create
+  get '/api/index', controller: :api, action: :index
+
+
+  # === === === MatcherClone === === ===
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

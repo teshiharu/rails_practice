@@ -1,8 +1,6 @@
 <template>
-  <div class="sample">
-    <h1>Sample</h1>
-    <div class="count">動物リスト：{{ animals.length }}匹</div>
-    <br>
+  <div>
+    <h1>Index</h1>
     <div class="loading" v-if="animals.length == 0">読み込み中...</div>
     <div class="animal" v-for="animal in animals">
       <div class="row">id : {{ animal.id }}</div>
@@ -14,8 +12,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'; //axiosを使う準備
 
+//他のファイルでimportされたときに戻り値
 export default {
   components: {
   },
@@ -24,7 +23,7 @@ export default {
   },
   data() {
     return {
-      animals: [],
+      animals: [] //APIから受け取った動物の配列データを格納しておく為の変数
     };
   },
   watch: {
@@ -32,19 +31,21 @@ export default {
   created() {
   },
   mounted() {
-    this.fetchAnimals();
+    // ここにapiからデータ引っ張ってくる処理書く
+    this.fetchAnimals()
   },
   methods: {
     async fetchAnimals() {
-      const response = await axios.get('/api/sample');
-      console.log(response);
-      this.animals = response.data.animals;
+      const response = await axios.get('/api/index')
+      console.log(response)
+      this.animals = response.data.animals
+
+      console.log(this.animals)
     },
   },
 }
 </script>
 
 <style scoped lang="scss">
-.sample {
-}
+
 </style>
